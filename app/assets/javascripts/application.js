@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+  $(document).ready(function(){
+    $("a.user-image-menu").click(function(e){
+      e.preventDefault()
+        $("div.dropdown-user-menu.parent-menu").toggleClass("opened");
+    })
+  });
+
+  function clicking(url){
+  	window.location = url;
+  };
