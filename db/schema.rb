@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905094215) do
+ActiveRecord::Schema.define(version: 20140924101123) do
 
   create_table "products", force: true do |t|
     t.string   "link",         null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20140905094215) do
     t.string   "provider",               default: "",                                                                                  null: false
     t.string   "twitter_username"
     t.string   "twitter_pic",            default: "https://abs.twimg.com/sticky/default_profile_images/default_profile_3_400x400.png", null: false
+    t.string   "personal_title"
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

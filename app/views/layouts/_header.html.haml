@@ -20,7 +20,7 @@
           .dropdown-user-menu.parent-menu
             %ul.parent-menu-ul
               %li=link_to "My Profile", user_path(current_user)
-              %li=link_to "Settings", "#"
+              %li=link_to "Settings", edit_user_path(current_user),width: "100%"
               %li=link_to "Log out", destroy_user_session_path, method: :delete
       - else
         %li

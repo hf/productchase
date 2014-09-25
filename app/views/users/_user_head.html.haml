@@ -1,6 +1,7 @@
 %a{href: "https://www.twitter.com/#{@user.twitter_username}", target:"_blank"}
   %span.twitter-rounded.user-image.user-image-as-background{size:"150", style:"background-image: url(#{@user.twitter_pic.sub('_normal','')}); width: 150px; height: 150px;"}
-%h2
-  =@user.name
+%h2=@user.name
+- if @user.personal_title
+  %p.subtitle= @user.personal_title
 %p.join-date
   == User ##{@user.id}
