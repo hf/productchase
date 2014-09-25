@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   before_create :twitter_username_downcase
+  before_save :personal_title_nil
 
   has_many :products
   has_many :votes
@@ -18,6 +19,7 @@ class User < ActiveRecord::Base
   validates :uid, uniqueness: { scope: :provider, case_insensitive: true }
 
   validates :twitter_username, uniqueness: { case_insensitive: true }, presence: true
+  validates :personal_title, length:{maximum: 40}
 
   def self.find_or_create_for_oauth auth
     user = User.find_by uid: auth.uid, provider: auth.provider
@@ -63,5 +65,9 @@ class User < ActiveRecord::Base
 
     def twitter_username_downcase
       twitter_username.downcase!
+    end
+
+    def personal_title_nil
+      self.personal_title = nil if self.personal_title == ""
     end
 end

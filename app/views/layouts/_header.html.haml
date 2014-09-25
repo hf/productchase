@@ -2,8 +2,8 @@
 
 .container-header
   .container
-    %a.brand-holder
-      = render partial: 'logo', formats: [ :svg ]
+    %a.brand-holder{href: root_path}
+      = render partial: 'layouts/logo', formats: [ :svg ]
 
       %h1.brand Product Chase
       %small the best new products, daily
@@ -15,12 +15,13 @@
           = link_to '+', new_product_path, class: 'new-post-link'
 
         %li.menu-parent
-          %a.user-image-menu{ href: user_path(current_user) }
+          %a.user-image-menu{ href: "#"}
             %img.twitter-rounded.user-image{ height: 30, width: 30, src: current_user.twitter_pic }
-
-        %li
-          = form_for current_user, method: :delete, url: destroy_user_session_path do |f|
-            = f.submit 'Log Out', class: 'new-post-link'
+          .dropdown-user-menu.parent-menu
+            %ul.parent-menu-ul
+              %li=link_to "My Profile", user_path(current_user)
+              %li=link_to "Settings", edit_user_path(current_user),width: "100%"
+              %li=link_to "Log out", destroy_user_session_path, method: :delete
       - else
         %li
           = link_to 'Log In', user_omniauth_authorize_path('twitter')

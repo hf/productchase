@@ -1,4 +1,4 @@
-%li.post
+%li#purple.post{onclick:"redirectToPage(\"#{product_path(product)}\")"}
   -if current_user && current_user.vote_products.include?(product)
     =render "products/upvote_voted", product: product
   -else

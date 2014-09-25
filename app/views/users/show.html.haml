@@ -1,11 +1,9 @@
-.users-show
-  #close-discussion-panel.close-discussion-body.close-discussion.overflow-auto
-    .container-main.container
-      .yield-container
-        .user-heading
-          =render partial: "users/user_head"
-        .posts
-          %ul.posts-group
-            =render @products
-    .container-footer.container
-      #page_end Hunting down older posts...
+.container-main.container
+  .yield-container
+    .user-heading
+      =render partial: "users/user_head"
+    .posts
+      %ul.posts-group
+        =render @products
+.container-footer.container
+  #page_end Hunting down older posts...
