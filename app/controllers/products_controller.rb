@@ -58,12 +58,12 @@ class ProductsController < ApplicationController
 
   def vote
     @product = Product.find(params[:id])
-    @vote = current_user.votes.find_by(product: @product)
+    @vote = current_user.votes.find_by(votable: @product)
 
     if @vote
       @vote.destroy!
     else
-      @vote = current_user.votes.create(product: @product)
+      @vote = current_user.votes.create(votable: @product)
     end
 
     redirect_to @product

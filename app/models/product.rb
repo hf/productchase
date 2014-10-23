@@ -16,7 +16,7 @@ end
 class Product < ActiveRecord::Base
   belongs_to :user
 
-  has_many :votes
+  has_many :votes, as: :votable
   has_many :vote_users, through: :votes, source: :user
 
   has_many :comments

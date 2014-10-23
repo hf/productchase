@@ -15,7 +15,7 @@ describe Product, :type => :model do
     before do
       create_user :vlatko
       create_product
-      @user_vlatko.votes.create!(product: @product)
+      @user_vlatko.gives_vote_to(@product)
     end
 
     specify{expect(@product.vote_users).to include(@user_vlatko)}

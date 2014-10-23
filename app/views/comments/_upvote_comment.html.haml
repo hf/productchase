@@ -1,0 +1,6 @@
+.upvote
+  %a.upvote-link{href: "#", onclick:"document.getElementById(\"#{comment.id}_comment\").submit();"}
+    =form_for(Vote.new(votable: comment), html:{class: "hide", id: "#{comment.id}_comment"}) do |f|
+      =f.hidden_field :votable_id, value: comment.id
+      =f.hidden_field :votable_type, value: comment.class.to_s 
+  %span.vote-count=comment.votes.count

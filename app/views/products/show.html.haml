@@ -42,6 +42,6 @@
               .slick-track{style:"width: 1210px; -webkit-transform: translate3d(0px, 0px, 0px); opacity: 1;"}
                 =render "products/user"
       .comments
-        =render partial: "products/comment_form"
+        =render partial: "comments/comment_form"
         %h2.subhead=pluralize(@product.comments.count,"comment")
-        =render partial: "products/comment", collection: @comments
+        =render partial: "comments/comment", collection: @comments

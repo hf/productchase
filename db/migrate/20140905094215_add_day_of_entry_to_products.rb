@@ -2,7 +2,7 @@ class AddDayOfEntryToProducts < ActiveRecord::Migration
   def up
     add_column :products, :day_of_entry, :datetime
 
-    Product.all do |product|
+    Product.all.each do |product|
       product.day_of_entry = product.created_at.midnight
       product.save!
     end

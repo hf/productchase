@@ -7,9 +7,10 @@
     .comment-body
       %h2.comment-user-name
         %a{href: user_path(comment.user)}=comment.user.name
-      .upvote
-        %a.upvote-link{href: "#"}
-        %span.vote-count=5
+      - if current_user && current_user.vote_comments.include?(comment)
+        = render partial: "comments/upvote_voted_comment", locals:{comment: comment}    
+      - else
+        = render partial: "comments/upvote_comment", locals:{comment: comment}
       .comment-user-info
         %small.comment-user-handle="@#{comment.user.twitter_username}"
         %small.comment-user-headline=" · #{comment.user.personal_title}"

@@ -1,10 +1,11 @@
 class User < ActiveRecord::Base
   before_create :twitter_username_downcase
 
-  has_many :products
-  has_many :votes
-  has_many :vote_products, through: :votes, source: :product
-  has_many :comments
+  has_many :products, dependent: :destroy
+  has_many :votes, dependent: :destroy
+  has_many :vote_products, through: :votes, source: :votable, source_type: "Product"
+  has_many :comments, dependent: :destroy
+  has_many :vote_comments, through: :votes, source: :votable, source_type: "Comment"
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -49,8 +50,8 @@ class User < ActiveRecord::Base
     false
   end
 
-  def gives_vote_to(product)
-    votes.create(product: product)
+  def gives_vote_to(votable)
+    votes.create(votable: votable)
   end
 
   def voted?(product)
