@@ -1,0 +1,23 @@
+.comment-thread
+  %hr.comments-rule
+  .comment
+    .user-image-container
+      %a.user-image-link-post{href: user_path(comment.user)}
+        %img.twitter-rounded.user-image{src: comment.user.twitter_pic, height: 40, width: 40}
+    .comment-body
+      %h2.comment-user-name
+        %a{href: user_path(comment.user)}=comment.user.name
+      - if current_user && current_user.vote_comments.include?(comment)
+        = render partial: "comments/upvote_voted_comment", locals:{comment: comment}    
+      - else
+        = render partial: "comments/upvote_comment", locals:{comment: comment}
+      .comment-user-info
+        %small.comment-user-handle="@#{comment.user.twitter_username}"
+        %small.comment-user-headline=" · #{comment.user.personal_title}"
+      .actual-comment=comment.text
+      %ul.comment-menu
+        -if is_current_user_author?(comment.user)
+          %li.delete_edit
+            =link_to product_comment_path(@product,comment),title:"Delete comment", method: :delete, data:{confirm: "Are you sure?"} do
+              %i.fa.fa-close
+        %li.comment-time-ago=time_past(comment.created_at)

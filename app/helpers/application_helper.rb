@@ -10,4 +10,14 @@ module ApplicationHelper
   def id_upvote
     @id_upvote = upvote_class.split(/\s/).join("_")
   end
+
+  def time_past(time)
+    t = TimeAgo.new(time)
+
+    t.format_time
+  end
+
+  def is_current_user_author?(user)
+    current_user == user
+  end
 end

@@ -1,0 +1,4 @@
+.upvote.voted
+  %a.upvote-link{href:"#", onclick:"document.getElementById(\"#{comment.id}_comment\").submit();" }
+    =form_for(current_user.votes.find_by(votable: comment), html:{method: :delete, class: "hide", id: "#{comment.id}_comment"}){}
+  %span.vote-count=comment.votes.count

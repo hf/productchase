@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       patch :vote
     end
+    resources :comments, only: [:create,:destroy]
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }

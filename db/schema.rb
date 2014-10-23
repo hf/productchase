@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905094215) do
+ActiveRecord::Schema.define(version: 20141022152545) do
+
+  create_table "comments", force: true do |t|
+    t.text     "text"
+    t.integer  "product_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["product_id"], name: "index_comments_on_product_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "products", force: true do |t|
     t.string   "link",         null: false
@@ -44,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140905094215) do
     t.string   "provider",               default: "",                                                                                  null: false
     t.string   "twitter_username"
     t.string   "twitter_pic",            default: "https://abs.twimg.com/sticky/default_profile_images/default_profile_3_400x400.png", null: false
+    t.string   "personal_title"
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -52,9 +64,13 @@ ActiveRecord::Schema.define(version: 20140905094215) do
 
   create_table "votes", force: true do |t|
     t.integer  "user_id"
-    t.integer  "product_id"
+    t.integer  "votable_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "votable_type"
   end
+
+  add_index "votes", ["votable_id"], name: "index_votes_on_votable_type_and_product_id"
+  add_index "votes", ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id"
 
 end

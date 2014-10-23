@@ -1,8 +1,9 @@
 .upvote
   -if current_user  
     %a.upvote-link{href:"#", onclick: "document.getElementById(\"create_vote_#{product.name}\").submit();"}
-      =form_for(current_user.votes.build(product: product), html:{class: "hide", id: "create_vote_#{product.name}"}) do |f|
-        =f.hidden_field :product, value: product.id
+      =form_for(current_user.votes.build(votable: product), html:{class: "hide", id: "create_vote_#{product.name}"}) do |f|
+        =f.hidden_field :votable_id, value: product.id
+        =f.hidden_field :votable_type, value: product.class.to_s
   -else
     %a.upvote-link{href: new_user_session_path}
   %span.vote-count=product.votes.count

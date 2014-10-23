@@ -1,0 +1,10 @@
+.container-main-head.container
+  .container-main.container
+    .yield-container
+      %h2 Settings
+      .settings-fields
+        =form_for @user, html:{class: "edit_user", name: "user"} do |f|
+          = render partial: "shared/errors_full_messages", locals:{ object: f.object } 
+          = f.text_field :personal_title, value: @user.personal_title, class: "inputfield", id: "user_headline", placeholder: "Job title, company" 
+          %br
+          = f.submit "Update", class: "edit_settings", name: "commit"

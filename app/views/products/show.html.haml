@@ -16,7 +16,7 @@
       .bottom
         .product-top
           %div{class: upvote_class}
-            =render "upvote_link_form"
+            =render "products/upvote_link_form"
         .post-info
           %a.post-url{href: @product.link, target: "_blank"}=@product.name
           %br
@@ -41,3 +41,7 @@
             .slick-list.draggable{tabindex:"0"}
               .slick-track{style:"width: 1210px; -webkit-transform: translate3d(0px, 0px, 0px); opacity: 1;"}
                 =render "products/user"
+      .comments
+        =render partial: "comments/comment_form"
+        %h2.subhead=pluralize(@product.comments.count,"comment")
+        =render partial: "comments/comment", collection: @comments

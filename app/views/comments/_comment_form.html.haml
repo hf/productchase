@@ -1,0 +1,18 @@
+-if current_user
+  .comment-thread
+    %hr.comments-rule
+    .comment
+      .user-image-container
+        %a.user-image-link-post{href: user_path(current_user)}
+          %img.twitter-rounded.user-image{src: current_user.twitter_pic, height: 40, width: 40}
+      .comment-body
+        %h2.comment-user-name
+          %a{href: user_path(current_user)}=current_user.name
+        .comment-user-info
+          %small.comment-user-handle="@#{current_user.twitter_username}"
+          %small.comment-user-headline=" · #{current_user.personal_title}"
+        .actual-comment{style:"margin-top: 35px;"}
+          =form_for([@product, @comment]) do |f|
+            = render partial: "shared/errors_full_messages", locals:{object: f.object}
+            =f.text_area :text, placeholder: "Write a comment here...", cols: 40, rows: 5
+            =f.submit "Done"

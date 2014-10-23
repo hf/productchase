@@ -1,8 +1,6 @@
-= render partial: 'header'
-
 .container-main.container
   .yield-container
-    .posts-wrapper
+    #posts-wrapper
       .posts
         - @products_by_day.each do |day, products|
           = render partial: 'products/products', locals: { day: day, products: products }

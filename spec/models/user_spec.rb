@@ -24,7 +24,7 @@ describe User, :type => :model do
 
     it "vote should equal user" do
       expect(vote.user).to eq @user
-      expect(vote.product).to eq @product 
+      expect(vote.votable).to eq @product 
     end
   end
 
