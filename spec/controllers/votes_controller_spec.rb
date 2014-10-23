@@ -22,15 +22,15 @@ RSpec.describe VotesController, :type => :controller do
     end
 
     it "creates vote for product" do
-      post :create , { vote:{ product: @product.id }}
+      post :create , { vote:{ votable_id: @product.id, votable_type: @product.class.to_s }}
       vote = assigns(:vote)
       expect(vote.user).to eq @user_ile
-      expect(vote.product).to eq @product
+      expect(vote.votable).to eq @product
     end
 
     it 'creates a vote' do
       expect {
-        post :create , { vote:{ product: @product.id }}
+        post :create , { vote:{ votable_id: @product.id, votable_type: @product.class.to_s }}
       }.to change(Vote, :count).by(1)
     end
   end

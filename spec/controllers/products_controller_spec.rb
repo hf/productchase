@@ -26,13 +26,13 @@ describe ProductsController, :type => :controller do
       vote = assigns(:vote)
 
       expect(vote.user).to eq @user
-      expect(vote.product).to eq @product
+      expect(vote.votable).to eq @product
 
       expect(response).to redirect_to @product
     end
 
     it 'should destroy an existing vote for user and product' do
-      existing_vote = Vote.create! user: @user, product: @product
+      existing_vote = Vote.create! user: @user, votable: @product
       sign_in @user
 
       post :vote, @params

@@ -1,4 +1,4 @@
 .upvote.voted
   %a.upvote-link{href: "#", onclick: "document.getElementById('destroy_vote_#{product.name}').submit()"}
-    =form_for(current_user.votes.find_by(product: product), html:{method: :delete, class: "hide", id: "destroy_vote_#{product.name}"}) {}
+    =form_for(current_user.votes.find_by(votable: product), html:{method: :delete, class: "hide", id: "destroy_vote_#{product.name}"}) {}
   %span.vote-count=product.votes.count

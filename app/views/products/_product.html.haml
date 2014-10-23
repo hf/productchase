@@ -1,4 +1,4 @@
-%li.post
+%li.post{onclick:"redirectToPage(event,\"#{product_path(product)}\")"}
   -if current_user && current_user.vote_products.include?(product)
     =render "products/upvote_voted", product: product
   -else
@@ -6,9 +6,9 @@
   .url 
     %a{class: "post-url title", href: "#{product.link}", target: "_blank"}=product.name
     %span.post-tagline.description=product.description
-  %a.view-discussion{href: "#"}
+  %a.view-discussion{href: product_path(product), title: "join discussion"}
     =image_tag "comment-cloud.png", alt: "Comment", class: "comment-image"
-    %p.comment-count=23
+    %p.comment-count=product.comments.count
   .user-image-holder 
     %a{href: user_path(product.user)}
       %img.twitter-rounded.user-image{src: product.user.twitter_pic, height: "30", width: "30", alt: product.user.twitter_username}

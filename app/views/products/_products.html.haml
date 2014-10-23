@@ -23,8 +23,13 @@
 
           %span.vote-count= product.votes.count
         .url
-          = link_to product.name, product.link, class: 'post-url'
-          %span.post-tagline= product.description
+          = link_to product.name, product.link, class: 'post-url title'
+          %span.post-tagline.description= product.description
+        %a.view-discussion{href: product_path(product), title: "join discussion"}
+          =image_tag "comment-cloud.png", alt: "Comment", class: "comment-image"
+          %p.comment-count=product.comments.count
+        .user-image-holder
+          =link_to image_tag(product.user.twitter_pic, title: product.user.twitter_username, class: "twitter-rounded user-image", height: "30", width: "30"), product.user
 
   - if !day.today? and products.length > maxdays
     %a.show-hidden-posts{ href: '#', onclick: 'showHiddenProducts()' }
